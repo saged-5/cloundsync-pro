@@ -286,6 +286,7 @@
             </div>
           </div>
         </div>
+      </div>
       <p class="disclaimer">*Fictional companies and testimonials for demo purposes only</p>
     </div>
   </section>
@@ -366,19 +367,6 @@
     }
     document.getElementById('demo-modal').addEventListener('click', function(e) {
       if (e.target === this) closeDemoModal();
-    });
-
-    // Fade in animation on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
-        }
-      });
-    });
-    document.querySelectorAll('.fade-in').forEach(el => {
-      el.style.animationPlayState = 'paused';
-      observer.observe(el);
     });
   </script>
 
