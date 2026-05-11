@@ -15,6 +15,7 @@
       --glass: rgba(255,255,255,0.05);
     }
     * {margin:0;padding:0;box-sizing:border-box}
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
       background: var(--navy);
@@ -24,7 +25,7 @@
     h1,h2,h3 {font-family: 'Poppins', sans-serif;font-weight:700}
     .container {max-width:1200px;margin:auto;padding:0 20px}
     
-    /* Notice Bar - الجديد بس */
+    /* Notice Bar */
     .notice {
       background: #F59E0B;
       color: #0A192F;
@@ -48,7 +49,7 @@
     .cta-btn {
       background: linear-gradient(90deg, var(--blue), var(--light-blue));
       color:white;padding:12px 24px;border-radius:8px;text-decoration:none;
-      font-weight:600;transition:0.3s;
+      font-weight:600;transition:0.3s;cursor:pointer;border:none;font-family:inherit;font-size:16px;
     }
     .cta-btn:hover {transform:translateY(-2px);box-shadow:0 10px 20px rgba(37,99,235,0.3)}
     
@@ -64,7 +65,7 @@
     .hero-btns {display:flex;gap:15px;justify-content:center}
     .secondary-btn {
       border:1px solid var(--glass);padding:12px 24px;border-radius:8px;
-      text-decoration:none;color:var(--white);transition:0.3s;
+      text-decoration:none;color:var(--white);transition:0.3s;cursor:pointer;background:none;font-family:inherit;font-size:16px;
     }
     .secondary-btn:hover {background:var(--glass)}
     
@@ -81,6 +82,42 @@
     .feature-card i {font-size:2rem;color:var(--light-blue);margin-bottom:15px}
     .feature-card h3 {margin-bottom:10px}
     .feature-card p {color:#94A3B8}
+
+    /* Dashboard Section - الجديد */
+    .dashboard {padding:80px 0;text-align:center}
+    .dashboard-img {
+      background:var(--glass);border:1px solid rgba(255,255,255,0.1);
+      border-radius:16px;padding:20px;margin-top:50px;backdrop-filter:blur(10px);
+    }
+    .dashboard-img img {
+      width:100%;border-radius:8px;opacity:0.9;
+    }
+    .dashboard-tag {
+      display:inline-block;background:rgba(56,189,248,0.1);color:var(--light-blue);
+      padding:5px 15px;border-radius:50px;font-size:12px;margin-bottom:15px;
+      border:1px solid rgba(56,189,248,0.2);
+    }
+
+    /* Testimonials - الجديد */
+    .testimonials {padding:80px 0}
+    .testimonials-grid {
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:30px;margin-top:50px;
+    }
+    .testimonial-card {
+      background:var(--glass);padding:30px;border-radius:16px;
+      border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(10px);
+    }
+    .testimonial-text {color:#94A3B8;margin-bottom:20px;font-style:italic}
+    .testimonial-author {display:flex;align-items:center;gap:15px}
+    .author-avatar {
+      width:50px;height:50px;border-radius:50%;
+      background: linear-gradient(90deg, var(--blue), var(--light-blue));
+      display:flex;align-items:center;justify-content:center;font-weight:700;
+    }
+    .author-info h4 {margin-bottom:2px}
+    .author-info p {color:#94A3B8;font-size:0.9rem}
+    .disclaimer {font-size:12px;color:#64748B;text-align:center;margin-top:40px}
     
     /* Pricing */
     .pricing {padding:80px 0;text-align:center}
@@ -99,6 +136,28 @@
     .socials {margin-top:20px}
     .socials a {color:#94A3B8;font-size:1.5rem;margin:0 10px;transition:0.3s}
     .socials a:hover {color:var(--light-blue)}
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;top: 0;left: 0;width: 100%;height: 100%;
+      background: rgba(0,0,0,0.8);z-index: 2000;display: none;
+      justify-content: center;align-items: center;padding: 20px;
+    }
+    .modal-content {
+      background: var(--navy);border:1px solid var(--glass);
+      border-radius:16px;max-width: 500px;width: 100%;padding: 40px;
+      position: relative;text-align:center;
+    }
+    .close-modal {
+      position: absolute;top: 15px;right: 20px;background: none;
+      border: none;font-size: 28px;cursor: pointer;color: #94A3B8;
+    }
+    .close-modal:hover {color: var(--light-blue)}
+    .modal-tag {
+      display: inline-block;background: var(--light-blue);color: var(--navy);
+      padding: 5px 15px;border-radius: 50px;font-size: 12px;
+      font-weight: 700;margin-bottom: 15px;
+    }
     
     @media(max-width:768px){
       .hero h1{font-size:2.5rem}
@@ -108,7 +167,7 @@
 </head>
 <body>
 
-  <!-- التنبيه الجديد - ده الإضافة الوحيدة -->
+  <!-- التنبيه - متغيرش -->
   <div class="notice">
     تنبيه: هذا الموقع نموذج للعرض فقط وليس منتج حقيقي | This is a demo site for portfolio purposes only
   </div>
@@ -117,7 +176,7 @@
     <div class="container">
       <nav>
         <div class="logo">CloudSync<span>Pro</span></div>
-        <a href="#pricing" class="cta-btn">Start Free Trial</a>
+        <button class="cta-btn" onclick="openDemoModal()">Start Free Trial</button>
       </nav>
     </div>
   </header>
@@ -125,9 +184,9 @@
   <section class="hero">
     <div class="container">
       <h1>Enterprise Cloud Storage<br><span>Built for Speed & Security</span></h1>
-      <p>Sync, share, and collaborate on files with military-grade encryption. Trusted by 10,000+ teams worldwide. 99.9% Uptime SLA.</p>
+      <p>Sync, share, and collaborate on files with military-grade encryption. Designed for modern teams.</p>
       <div class="hero-btns">
-        <a href="#pricing" class="cta-btn">Get Started - $3,000/year</a>
+        <button class="cta-btn" onclick="openDemoModal()">Get Started - $3,000/year</button>
         <a href="#features" class="secondary-btn">See Features</a>
       </div>
     </div>
@@ -135,7 +194,7 @@
 
   <section class="features" id="features">
     <div class="container">
-      <h2 style="text-align:center;font-size:2.5rem">Why Teams Choose Us</h2>
+      <h2 style="text-align:center;font-size:2.5rem">Key Features</h2>
       <div class="features-grid">
         <div class="feature-card">
           <i class="fa-solid fa-shield-halved"></i>
@@ -144,8 +203,8 @@
         </div>
         <div class="feature-card">
           <i class="fa-solid fa-bolt"></i>
-          <h3>Blazing Fast Sync</h3>
-          <p>Global CDN ensures your files sync in milliseconds, anywhere.</p>
+          <h3>Global Access</h3>
+          <p>Access your files securely from anywhere in the world.</p>
         </div>
         <div class="feature-card">
           <i class="fa-solid fa-users"></i>
@@ -156,9 +215,50 @@
     </div>
   </section>
 
+  <!-- Dashboard Section الجديد -->
+  <section class="dashboard">
+    <div class="container">
+      <div class="dashboard-tag">UI CONCEPT</div>
+      <h2 style="font-size:2.5rem">Intuitive Dashboard</h2>
+      <p style="color:#94A3B8;max-width:600px;margin:15px auto 0">A clean interface designed for team productivity and control.</p>
+      <div class="dashboard-img">
+        <img src="https://placehold.co/1000x600/0A192F/38BDF8?text=Dashboard+UI+Concept" alt="Dashboard UI Concept">
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section الجديد -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 style="text-align:center;font-size:2.5rem">What Teams Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">"The encryption model gives our legal team peace of mind. Setup was straightforward."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">JD</div>
+            <div class="author-info">
+              <h4>John D.</h4>
+              <p>CTO, TechCorp*</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">"Managing permissions for 40+ people used to be a headache. This solved it."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SM</div>
+            <div class="author-info">
+              <h4>Sarah M.</h4>
+              <p>Operations Lead, Innovate LLC*</p>
+            </div>
+          </div>
+        </div>
+      <p class="disclaimer">*Fictional companies and testimonials for demo purposes only</p>
+    </div>
+  </section>
+
   <section class="pricing" id="pricing">
     <div class="container">
-      <h2 style="font-size:2.5rem">Simple Pricing for Scale</h2>
+      <h2 style="font-size:2.5rem">Simple Pricing</h2>
       <div class="price-card">
         <h3>Business Pro</h3>
         <div class="price">$3,000<span>/year</span></div>
@@ -168,7 +268,7 @@
           <li><i class="fa-solid fa-check"></i> 24/7 Priority Support</li>
           <li><i class="fa-solid fa-check"></i> Advanced Security & Audit Logs</li>
         </ul>
-        <a href="https://wa.me/201234567890?text=Hi%2C%20I'm%20interested%20in%20CloudSync%20Pro" class="cta-btn" style="width:100%;display:block">Contact Sales via WhatsApp</a>
+        <a href="https://wa.me/201066040567?text=Hi%2C%20I'm%20interested%20in%20CloudSync%20Pro" target="_blank" class="cta-btn" style="width:100%;display:block">Contact Sales via WhatsApp</a>
       </div>
     </div>
   </section>
@@ -177,11 +277,37 @@
     <div class="container">
       <p>© 2026 CloudSync Pro. All rights reserved.</p>
       <div class="socials">
-        <a href="https://wa.me/201234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://instagram.com/yourpage" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/201066040567" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/saged_3zz_3amer" target="_blank"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
   </footer>
+
+  <!-- Demo Modal -->
+  <div class="modal-overlay" id="demo-modal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeDemoModal()">&times;</button>
+      <div class="modal-tag">DEMO ONLY</div>
+      <h2 style="margin-bottom:15px">This is a Demo</h2>
+      <p style="color:#94A3B8;margin-bottom:25px;line-height:1.8">This is a demo site for portfolio display only. No real transactions will be processed.</p>
+      <p style="color:#94A3B8;margin-bottom:30px">To discuss real projects, please contact us via WhatsApp.</p>
+      <a href="https://wa.me/201066040567" target="_blank" class="cta-btn">Contact on WhatsApp</a>
+    </div>
+  </div>
+
+  <script>
+    function openDemoModal() {
+      document.getElementById('demo-modal').style.display = 'flex';
+    }
+
+    function closeDemoModal() {
+      document.getElementById('demo-modal').style.display = 'none';
+    }
+
+    document.getElementById('demo-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeDemoModal();
+    });
+  </script>
 
 </body>
 </html>
