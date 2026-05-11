@@ -24,6 +24,8 @@
     }
     h1,h2,h3 {font-family: 'Poppins', sans-serif;font-weight:700}
     .container {max-width:1200px;margin:auto;padding:0 20px}
+    .fade-in {opacity:0;transform:translateY(20px);animation:fadeInUp 0.6s forwards}
+    @keyframes fadeInUp {to{opacity:1;transform:translateY(0)}}
     
     /* Notice Bar */
     .notice {
@@ -83,7 +85,7 @@
     .feature-card h3 {margin-bottom:10px}
     .feature-card p {color:#94A3B8}
 
-    /* Dashboard Section - الجديد */
+    /* Dashboard Section */
     .dashboard {padding:80px 0;text-align:center}
     .dashboard-img {
       background:var(--glass);border:1px solid rgba(255,255,255,0.1);
@@ -98,7 +100,15 @@
       border:1px solid rgba(56,189,248,0.2);
     }
 
-    /* Testimonials - الجديد */
+    /* Integrations - الجديد */
+    .integrations {padding:60px 0;text-align:center}
+    .logos-grid {
+      display:flex;flex-wrap:wrap;justify-content:center;gap:40px;margin-top:40px;opacity:0.6;
+    }
+    .logos-grid i {font-size:2.5rem;color:#94A3B8;transition:0.3s}
+    .logos-grid i:hover {color:var(--light-blue);opacity:1}
+
+    /* Testimonials */
     .testimonials {padding:80px 0}
     .testimonials-grid {
       display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
@@ -118,6 +128,16 @@
     .author-info h4 {margin-bottom:2px}
     .author-info p {color:#94A3B8;font-size:0.9rem}
     .disclaimer {font-size:12px;color:#64748B;text-align:center;margin-top:40px}
+
+    /* FAQ - الجديد */
+    .faq {padding:80px 0}
+    .faq-grid {max-width:800px;margin:50px auto 0}
+    .faq-item {
+      background:var(--glass);border:1px solid rgba(255,255,255,0.1);
+      border-radius:12px;padding:25px;margin-bottom:15px;backdrop-filter:blur(10px);
+    }
+    .faq-item h4 {margin-bottom:10px;color:var(--light-blue)}
+    .faq-item p {color:#94A3B8}
     
     /* Pricing */
     .pricing {padding:80px 0;text-align:center}
@@ -133,6 +153,9 @@
     
     /* Footer */
     footer {padding:40px 0;text-align:center;border-top:1px solid var(--glass)}
+    .footer-links {margin:20px 0;display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+    .footer-links a {color:#94A3B8;text-decoration:none;cursor:pointer}
+    .footer-links a:hover {color:var(--light-blue)}
     .socials {margin-top:20px}
     .socials a {color:#94A3B8;font-size:1.5rem;margin:0 10px;transition:0.3s}
     .socials a:hover {color:var(--light-blue)}
@@ -162,12 +185,12 @@
     @media(max-width:768px){
       .hero h1{font-size:2.5rem}
       .hero-btns{flex-direction:column}
+      .logos-grid{gap:25px}
     }
   </style>
 </head>
 <body>
 
-  <!-- التنبيه - متغيرش -->
   <div class="notice">
     تنبيه: هذا الموقع نموذج للعرض فقط وليس منتج حقيقي | This is a demo site for portfolio purposes only
   </div>
@@ -183,9 +206,9 @@
 
   <section class="hero">
     <div class="container">
-      <h1>Enterprise Cloud Storage<br><span>Built for Speed & Security</span></h1>
-      <p>Sync, share, and collaborate on files with military-grade encryption. Designed for modern teams.</p>
-      <div class="hero-btns">
+      <h1 class="fade-in">Enterprise Cloud Storage<br><span>Built for Speed & Security</span></h1>
+      <p class="fade-in" style="animation-delay:0.2s">Sync, share, and collaborate on files with military-grade encryption. Designed for modern teams.</p>
+      <div class="hero-btns fade-in" style="animation-delay:0.4s">
         <button class="cta-btn" onclick="openDemoModal()">Get Started - $3,000/year</button>
         <a href="#features" class="secondary-btn">See Features</a>
       </div>
@@ -196,17 +219,17 @@
     <div class="container">
       <h2 style="text-align:center;font-size:2.5rem">Key Features</h2>
       <div class="features-grid">
-        <div class="feature-card">
+        <div class="feature-card fade-in">
           <i class="fa-solid fa-shield-halved"></i>
           <h3>Zero-Knowledge Encryption</h3>
           <p>Only your team can access your data. Not even we can see it.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card fade-in" style="animation-delay:0.2s">
           <i class="fa-solid fa-bolt"></i>
           <h3>Global Access</h3>
           <p>Access your files securely from anywhere in the world.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card fade-in" style="animation-delay:0.4s">
           <i class="fa-solid fa-users"></i>
           <h3>Advanced Team Controls</h3>
           <p>Set permissions, track versions, and manage access with ease.</p>
@@ -215,24 +238,35 @@
     </div>
   </section>
 
-  <!-- Dashboard Section الجديد -->
   <section class="dashboard">
     <div class="container">
       <div class="dashboard-tag">UI CONCEPT</div>
       <h2 style="font-size:2.5rem">Intuitive Dashboard</h2>
       <p style="color:#94A3B8;max-width:600px;margin:15px auto 0">A clean interface designed for team productivity and control.</p>
-      <div class="dashboard-img">
-        <img src="https://placehold.co/1000x600/0A192F/38BDF8?text=Dashboard+UI+Concept" alt="Dashboard UI Concept">
+      <div class="dashboard-img fade-in">
+        <img src="attachment://27487599113901388" alt="CloudSync Pro Dashboard UI Concept">
       </div>
     </div>
   </section>
 
-  <!-- Testimonials Section الجديد -->
+  <section class="integrations">
+    <div class="container">
+      <h3 style="color:#94A3B8;font-weight:500">Works with your favorite tools</h3>
+      <div class="logos-grid">
+        <i class="fa-brands fa-slack" title="Slack"></i>
+        <i class="fa-solid fa-bolt" title="Zapier"></i>
+        <i class="fa-brands fa-google-drive" title="Google Drive"></i>
+        <i class="fa-solid fa-n" title="Notion"></i>
+        <i class="fa-brands fa-microsoft" title="Microsoft"></i>
+      </div>
+    </div>
+  </section>
+
   <section class="testimonials">
     <div class="container">
       <h2 style="text-align:center;font-size:2.5rem">What Teams Say</h2>
       <div class="testimonials-grid">
-        <div class="testimonial-card">
+        <div class="testimonial-card fade-in">
           <p class="testimonial-text">"The encryption model gives our legal team peace of mind. Setup was straightforward."</p>
           <div class="testimonial-author">
             <div class="author-avatar">JD</div>
@@ -242,7 +276,7 @@
             </div>
           </div>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial-card fade-in" style="animation-delay:0.2s">
           <p class="testimonial-text">"Managing permissions for 40+ people used to be a headache. This solved it."</p>
           <div class="testimonial-author">
             <div class="author-avatar">SM</div>
@@ -256,10 +290,34 @@
     </div>
   </section>
 
+  <section class="faq">
+    <div class="container">
+      <h2 style="text-align:center;font-size:2.5rem">Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item fade-in">
+          <h4>How does the encryption work?</h4>
+          <p>This demo showcases a UI concept for zero-knowledge encryption. In a real product, files would be encrypted on your device before upload.</p>
+        </div>
+        <div class="faq-item fade-in" style="animation-delay:0.1s">
+          <h4>Can I migrate from my current provider?</h4>
+          <p>Migration tools are a standard feature in enterprise cloud storage solutions. This portfolio demo illustrates the interface concept.</p>
+        </div>
+        <div class="faq-item fade-in" style="animation-delay:0.2s">
+          <h4>Is there a free trial available?</h4>
+          <p>This site is a demo for portfolio purposes only. For real projects, please contact via WhatsApp using the button below.</p>
+        </div>
+        <div class="faq-item fade-in" style="animation-delay:0.3s">
+          <h4>What kind of support do you offer?</h4>
+          <p>Enterprise solutions typically include 24/7 priority support. This demo illustrates how support options would be presented.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="pricing" id="pricing">
     <div class="container">
       <h2 style="font-size:2.5rem">Simple Pricing</h2>
-      <div class="price-card">
+      <div class="price-card fade-in">
         <h3>Business Pro</h3>
         <div class="price">$3,000<span>/year</span></div>
         <ul class="price-features">
@@ -276,6 +334,11 @@
   <footer>
     <div class="container">
       <p>© 2026 CloudSync Pro. All rights reserved.</p>
+      <div class="footer-links">
+        <a onclick="openDemoModal()">Privacy Policy</a>
+        <a onclick="openDemoModal()">Terms of Service</a>
+        <a onclick="openDemoModal()">Security</a>
+      </div>
       <div class="socials">
         <a href="https://wa.me/201066040567" target="_blank"><i class="fab fa-whatsapp"></i></a>
         <a href="https://www.instagram.com/saged_3zz_3amer" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -283,7 +346,6 @@
     </div>
   </footer>
 
-  <!-- Demo Modal -->
   <div class="modal-overlay" id="demo-modal">
     <div class="modal-content">
       <button class="close-modal" onclick="closeDemoModal()">&times;</button>
@@ -299,13 +361,24 @@
     function openDemoModal() {
       document.getElementById('demo-modal').style.display = 'flex';
     }
-
     function closeDemoModal() {
       document.getElementById('demo-modal').style.display = 'none';
     }
-
     document.getElementById('demo-modal').addEventListener('click', function(e) {
       if (e.target === this) closeDemoModal();
+    });
+
+    // Fade in animation on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    });
+    document.querySelectorAll('.fade-in').forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
     });
   </script>
 
